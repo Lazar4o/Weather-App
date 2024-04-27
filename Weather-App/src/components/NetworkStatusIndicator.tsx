@@ -1,4 +1,4 @@
-import { ConnectionContext } from "@app/services/contexts/connectionContext";
+import { ConnectionContext } from "@app/services/contexts/ConnectionContext";
 import React, { useContext, useState } from "react";
 import { StatusBar } from "react-native";
 import { View, Text, ConnectionStatusBar } from "react-native-ui-lib";
