@@ -1,5 +1,5 @@
 import HomeScreen from "@app/screens/Home";
-import { ConnectionProvider } from "@app/services/contexts/connectionContext";
+import { ConnectionProvider } from "@app/services/contexts/ConnectionContext";
 import { useEffect } from "react";
 import { ConnectionStatusBar } from "react-native-ui-lib";
 
