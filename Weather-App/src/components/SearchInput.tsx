@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MagnifyingGlass from "@app/assets/svgs/MagnifyingGlass";
 import { StyleSheet } from "react-native";
-import { TextField, TouchableOpacity, View } from "react-native-ui-lib";
+import { Colors, TextField, TouchableOpacity, View } from "react-native-ui-lib";
 import PlusIcon from "@app/assets/svgs/PlusIcon";
 import { cityValidationSchema } from "@app/utils/validationSchema/cityInput";
 import CloseIcon from "@app/assets/svgs/CloseIcon";
@@ -51,7 +51,7 @@ const SearchInput = () => {
   }, [isVisible]);
 
   return (
-    <View spread row>
+    <View spread row paddingB-40={!isVisible}>
       <View flex>
         {isVisible && (
           <Controller
@@ -68,15 +68,18 @@ const SearchInput = () => {
                   onChangeText={onChange}
                   value={value}
                   placeholder="Search for a city"
+                  placeholderTextColor={Colors.grey40}
                   containerStyle={styles.inputContainer}
                   floatOnFocus
                   floatingPlaceholderStyle={{ left: 15 }}
+                  floatingPlaceholderColor={Colors.green60}
                   text70
+                  white
                   style={styles.textBox}
                   floatingPlaceholder
                   enableErrors
                   validationMessage={errors.city && errors.city.message}
-                  validationMessageStyle={{ marginTop: 5, marginLeft: 15 }}
+                  validationMessageStyle={{ marginVertical: 5, marginLeft: 15 }}
                   trailingAccessory={
                     <TouchableOpacity center onPress={handleSubmit(onSubmit)}>
                       <MagnifyingGlass />
@@ -91,11 +94,11 @@ const SearchInput = () => {
       <View marginT-25 right>
         {!isVisible ? (
           <TouchableOpacity onPress={() => handleSearch()}>
-            <PlusIcon size={26} color="gray" />
+            <PlusIcon size={26} color={Colors.green60} />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => handleClose()}>
-            <CloseIcon size={26} color="gray" />
+            <CloseIcon size={26} color={Colors.green60} />
           </TouchableOpacity>
         )}
       </View>
@@ -109,12 +112,12 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 0,
     borderWidth: 1,
-    borderColor: "grey",
-    borderRadius: 10
+    borderColor: Colors.green60,
+    borderRadius: 20
   },
   textBox: {
     borderBottomWidth: 1,
-    borderColor: "grey",
+    borderColor: Colors.green60,
     borderRadius: 10,
     paddingHorizontal: 10
   }

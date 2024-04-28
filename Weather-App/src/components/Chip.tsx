@@ -21,13 +21,13 @@ export const Chip = ({
         <TouchableOpacity
             style={{
                 alignSelf: 'flex-start',
-                borderWidth: 2,
-                borderColor: Colors.primary,
+                borderWidth: 1.5,
+                borderColor: isActive ? Colors.green1 : Colors.green60,
                 borderStyle: 'solid',
                 ...customStyle
             }}
             row
-            bg-green10={isActive}
+            bg-green1={isActive}
             bg-transparent={!isActive}
             br100
             paddingV-8
@@ -36,7 +36,7 @@ export const Chip = ({
             {...rest}
         >
             {leftIcon}
-            <Text text80 white={isActive} black={!isActive}>
+            <Text text80 white={isActive} green60={!isActive}>
                 {label}
             </Text>
         </TouchableOpacity>
