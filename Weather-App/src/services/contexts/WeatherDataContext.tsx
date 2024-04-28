@@ -28,16 +28,25 @@ interface WeatherDataProviderProps {
 }
 
 export const WeatherDataProvider = ({ children }: WeatherDataProviderProps) => {
-  const [city, setCity] = useState('Sofia');
+  const [city, setCity] = useState("Sofia");
   const [unit, setUnit] = useState<TemperatureUnit>(TemperatureUnit.Celsius);
 
   const { useGetWeatherData } = useWeatherData();
   const { data, isLoading, error } = useGetWeatherData(city, unit);
 
   useEffect(() => {
-    setCity('Sofia');
-  }, [])
-  
+    setCity("Sofia");
+  }, []);
+
+  //TODO: the data.weather prop has cool data that can be used for description
+  //   "weather": [
+  //      {
+  //         "id": 803,
+  //         "main": "Clouds",
+  //         "description": "предимно облачно",
+  //         "icon": "04n"
+  //      }
+  //    ],
 
   const contextValue: WeatherDataContextValue = {
     city,
