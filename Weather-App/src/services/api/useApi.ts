@@ -11,8 +11,6 @@ interface ApiHooks {
 }
 
 const useApi = (): ApiHooks => {
-  // console.log(process.env.EXPO_PUBLIC_API_URL, 'process.env.EXPO_PUBLIC_API_URL');
-
   const api = axios.create({
     baseURL: process.env.EXPO_PUBLIC_API_URL,
     timeout: 3000
@@ -24,7 +22,7 @@ const useApi = (): ApiHooks => {
         const funcResponse = await fetchFunc();
         return funcResponse;
       } catch (error) {
-        console.log("error_!@+@_#", error);
+        console.log("error response", error.response);
         // return handleResponseError(error); //TODO: handle
         return Promise.reject(error);
       }
