@@ -1,3 +1,4 @@
+import { handleResponseError } from "@app/utils/handleResponseError";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useCallback } from "react";
 
@@ -22,9 +23,7 @@ const useApi = (): ApiHooks => {
         const funcResponse = await fetchFunc();
         return funcResponse;
       } catch (error) {
-        console.log("error response", error.response);
-        // return handleResponseError(error); //TODO: handle
-        return Promise.reject(error);
+        return handleResponseError(error);
       }
     },
     []

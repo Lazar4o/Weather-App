@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
 import { View } from "react-native-ui-lib";
 import SearchInput from "@app/components/SearchInput";
@@ -7,6 +6,7 @@ import WeatherDisplay from "@app/components/WeatherDisplay";
 import WeatherDetails from "@app/components/WeatherDetails";
 
 const HomeScreen = () => {
+
   return (
     <View marginT-50 padding-20>
       <SearchInput />
