@@ -1,9 +1,16 @@
 import HomeScreen from "@app/screens/Home";
 import { ConnectionProvider } from "@app/services/contexts/ConnectionContext";
-import { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect, useRef } from "react";
 import { ConnectionStatusBar } from "react-native-ui-lib";
 
 export default function App() {
+  const queryClientRef = useRef(null);
+
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   useEffect(() => {
     ConnectionStatusBar.registerGlobalOnConnectionLost(() => {});
 
@@ -13,8 +20,10 @@ export default function App() {
   }, []);
 
   return (
-    <ConnectionProvider>
-      <HomeScreen />
-    </ConnectionProvider>
+    <QueryClientProvider client={queryClientRef.current}>
+      <ConnectionProvider>
+        <HomeScreen />
+      </ConnectionProvider>
+    </QueryClientProvider>
   );
 }
