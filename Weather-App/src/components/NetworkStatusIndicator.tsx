@@ -8,7 +8,7 @@ const NetworkStatusIndicator = () => {
 
   return (
     <>
-      <StatusBar hidden={false} backgroundColor={"white"} />
+      <StatusBar hidden={false} barStyle={'dark-content'} backgroundColor={'white'} />
       <View flex center paddingH-15>
         <Text text60 marginB-10 grey40 center>
           {"Turn your wifi on to see the \n Weather App in action"}
