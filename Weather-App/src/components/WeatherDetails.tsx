@@ -4,7 +4,7 @@ import { WeatherDataContext } from "@app/services/contexts/WeatherDataContext";
 import { useWeatherMappedData } from "@app/hooks/useWeatherDetailsMap";
 
 const WeatherDetails = () => {
-  const { weatherData, isWeatherDataLoading } =
+  const { weatherData, isWeatherDataLoading, isWeatherError } =
     useContext(WeatherDataContext);
 
   const { weatherAttributes } = useWeatherMappedData(weatherData?.main);
@@ -22,7 +22,7 @@ const WeatherDetails = () => {
           <View key={index} row>
             <Icon width={20} height={20} />
             <Text yellow80 text60 marginH-10>
-              {label}: {!isWeatherDataLoading ? value : "..."}
+              {label}: {!isWeatherDataLoading && !isWeatherError ? value : "..."}
             </Text>
           </View>
         ))}
