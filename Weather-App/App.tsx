@@ -1,15 +1,12 @@
 import HomeScreen from "@app/screens/Home";
 import { ConnectionProvider } from "@app/services/contexts/ConnectionContext";
+import { WeatherDataProvider } from "@app/services/contexts/WeatherDataContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { ConnectionStatusBar } from "react-native-ui-lib";
 
 export default function App() {
-  const queryClientRef = useRef(null);
-
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-  }
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     ConnectionStatusBar.registerGlobalOnConnectionLost(() => {});
@@ -20,10 +17,12 @@ export default function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClientRef.current}>
-      <ConnectionProvider>
-        <HomeScreen />
-      </ConnectionProvider>
+    <QueryClientProvider client={queryClient}>
+      <WeatherDataProvider>
+        <ConnectionProvider>
+          <HomeScreen />
+        </ConnectionProvider>
+      </WeatherDataProvider>
     </QueryClientProvider>
   );
 }
