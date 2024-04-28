@@ -1,19 +1,26 @@
 import { TemperatureUnit } from "@app/utils/enums/TemperatureUnit";
 import React, { createContext, useEffect, useState } from "react";
 import { useWeatherData } from "../api/useWeatherData";
+import { WeatherData } from "@app/utils/interfaces/WeatherData";
 
 interface WeatherDataContextValue {
   city: string;
   unit: TemperatureUnit;
   setCity: (city: string) => void;
   setUnit: (unit: TemperatureUnit) => void;
+  weatherData: WeatherData | null;
+  isWeatherDataLoading: boolean;
+  isWeatherError: Error | null;
 }
 
 export const WeatherDataContext = createContext<WeatherDataContextValue>({
-  city: "",
+  city: "Sofia",
   unit: TemperatureUnit.Celsius,
   setCity: () => {},
-  setUnit: () => {}
+  setUnit: () => {},
+  weatherData: null,
+  isWeatherDataLoading: false,
+  isWeatherError: null,
 });
 
 interface WeatherDataProviderProps {
@@ -27,18 +34,19 @@ export const WeatherDataProvider = ({ children }: WeatherDataProviderProps) => {
   const { useGetWeatherData } = useWeatherData();
   const { data, isLoading, error } = useGetWeatherData(city, unit);
 
-  // useEffect(() => {
-  //   if(data) {
-  //     console.log('DATA WAS FETCHED SUCCESFULLY');
-  //   }
-  // }
-  // , [data, city]);
+  useEffect(() => {
+    setCity('Sofia');
+  }, [])
+  
 
   const contextValue: WeatherDataContextValue = {
     city,
     unit,
     setCity,
-    setUnit
+    setUnit,
+    weatherData: data,
+    isWeatherDataLoading: isLoading,
+    isWeatherError: error,
   };
 
   return (
