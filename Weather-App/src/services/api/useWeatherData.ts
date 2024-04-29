@@ -9,7 +9,7 @@ export const useWeatherData = () => {
     return useQuery({
       queryKey: ["weather", city, unit],
       queryFn: () => getWeatherData({ city, unit }),
-      enabled: !!city, // TODO: - double check that - it only has to fetch data if city and unit are provided
+      enabled: !!city,
       select(data) {
         return data?.data;
       },

@@ -38,16 +38,6 @@ export const WeatherDataProvider = ({ children }: WeatherDataProviderProps) => {
     setCity("Sofia");
   }, []);
 
-  //TODO: the data.weather prop has cool data that can be used for description
-  //   "weather": [
-  //      {
-  //         "id": 803,
-  //         "main": "Clouds",
-  //         "description": "предимно облачно",
-  //         "icon": "04n"
-  //      }
-  //    ],
-
   const contextValue: WeatherDataContextValue = {
     city,
     unit,
