@@ -7,18 +7,12 @@ const NetworkStatusIndicator = () => {
   const { isConnected, setIsConnected } = useContext(ConnectionContext);
 
   return (
-    <>
-      <StatusBar hidden={false} barStyle={'dark-content'} backgroundColor={'white'} />
-      <View flex center paddingH-15>
-        <Text text60 marginB-10 grey40 center>
-          {"Turn your wifi on to see the \n Weather App in action"}
-        </Text>
-        <Text text40>{isConnected ? "Connected! :)" : "No connection :("}</Text>
-      </View>
+    <View marginT-30>
+      {/* <StatusBar hidden={false} barStyle={'dark-content'} backgroundColor={'white'} /> */}
       <ConnectionStatusBar
         onConnectionChange={(isConnected) => setIsConnected(isConnected)}
       />
-    </>
+    </View>
   );
 };
 

@@ -4,17 +4,19 @@ import SearchInput from "@app/components/SearchInput";
 import TempUnitControl from "@app/components/TempUnitControl";
 import WeatherDisplay from "@app/components/WeatherDisplay";
 import WeatherDetails from "@app/components/WeatherDetails";
+import NetworkStatusIndicator from "@app/components/NetworkStatusIndicator";
 
 const HomeScreen = () => {
-
   return (
-    <View marginT-50 padding-20>
-      <SearchInput />
-      <TempUnitControl />
-      <WeatherDisplay />
-      <WeatherDetails />
-      {/* <NetworkStatusIndicator /> */}
-    </View>
+    <>
+      <NetworkStatusIndicator />
+      <View marginT-20 padding-20>
+        <SearchInput />
+        <TempUnitControl />
+        <WeatherDisplay />
+        <WeatherDetails />
+      </View>
+    </>
   );
 };
 
