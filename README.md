@@ -10,7 +10,6 @@ Simple weather application using React Native and Expo, featuring integration wi
 
 Before you start, make sure you have the following installed:
 - [Node.js](https://nodejs.org/)
-- [Expo CLI](https://expo.dev/tools#cli) - Install using `npm install -g expo-cli`
 - [Expo Go](https://expo.dev/client) app on your mobile device for running the app locally
 
 ## Project Setup
