@@ -9,11 +9,7 @@ const WeatherDisplay = () => {
   const { weatherData, unit, isWeatherDataLoading, isWeatherError } =
     useContext(WeatherDataContext);
 
-  const [imageCode, setImageCode] = useState<string | null>(null);
-
-  useEffect(() => {
-    setImageCode(weatherData?.weather[0]?.icon);
-  }, [weatherData?.weather[0]?.icon]);
+  const iconCode = weatherData?.weather[0]?.icon 
 
   return (
     <View>
@@ -22,13 +18,13 @@ const WeatherDisplay = () => {
           <Text white text60>{`${weatherData?.name || "An error"}, ${
             weatherData?.sys?.country || "occured. Please try again"
           }`}</Text>
-          {imageCode ? (
+          {iconCode ? (
             <Image
               width={220}
               height={220}
               resizeMode="contain"
               source={{
-                uri: `https://openweathermap.org/img/wn/${imageCode}@2x.png`
+                uri: `https://openweathermap.org/img/wn/${iconCode}@2x.png`
               }}
             />
           ) : (
@@ -41,9 +37,9 @@ const WeatherDisplay = () => {
               }}
             />
           )}
-          <Text white text20>{`${weatherData?.main?.temp?.toFixed(
-            1
-          ) || 'Na'}°${getTemperatureUnitSymbol(unit)}`}</Text>
+          <Text white text20>{`${
+            weatherData?.main?.temp?.toFixed(1) || "Na"
+          }°${getTemperatureUnitSymbol(unit)}`}</Text>
           <Text grey40 text70>{`${capitalizeFirstLetter(
             weatherData?.weather[0]?.description
           )}`}</Text>
