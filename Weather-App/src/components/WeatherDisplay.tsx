@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Image, Text, View } from "react-native-ui-lib";
 import { WeatherDataContext } from "@app/services/contexts/WeatherDataContext";
 import { getTemperatureUnitSymbol } from "@app/utils/getTemperatureUnit";
@@ -6,43 +6,36 @@ import { capitalizeFirstLetter } from "@app/utils/capitalizeFirstLetter";
 import { ActivityIndicator } from "react-native";
 
 const WeatherDisplay = () => {
-  const { weatherData, unit, isWeatherDataLoading, isWeatherError } =
+  const { weatherData, unit, isWeatherDataLoading } =
     useContext(WeatherDataContext);
 
-  const iconCode = weatherData?.weather[0]?.icon 
+  const iconCode = weatherData?.weather[0]?.icon || "10d";
+  const weatherDescription = capitalizeFirstLetter(
+    weatherData?.weather[0]?.description
+  );
+  const mainTemp = weatherData?.main?.temp?.toFixed(1) || "Na";
+  const cityName = weatherData?.name || "An error";
+  const country = weatherData?.sys?.country || "occured. Please try again";
 
   return (
     <View>
       {!isWeatherDataLoading ? (
         <View center marginV-20>
-          <Text white text60>{`${weatherData?.name || "An error"}, ${
-            weatherData?.sys?.country || "occured. Please try again"
-          }`}</Text>
-          {iconCode ? (
-            <Image
-              width={220}
-              height={220}
-              resizeMode="contain"
-              source={{
-                uri: `https://openweathermap.org/img/wn/${iconCode}@2x.png`
-              }}
-            />
-          ) : (
-            <Image
-              width={220}
-              height={220}
-              resizeMode="contain"
-              source={{
-                uri: `https://openweathermap.org/img/wn/10d@2x.png`
-              }}
-            />
-          )}
-          <Text white text20>{`${
-            weatherData?.main?.temp?.toFixed(1) || "Na"
-          }°${getTemperatureUnitSymbol(unit)}`}</Text>
-          <Text grey40 text70>{`${capitalizeFirstLetter(
-            weatherData?.weather[0]?.description
+          <Text white text60>{`${cityName}, ${country}`}</Text>
+
+          <Image
+            width={220}
+            height={220}
+            resizeMode="contain"
+            source={{
+              uri: `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+            }}
+          />
+
+          <Text white text20>{`${mainTemp}°${getTemperatureUnitSymbol(
+            unit
           )}`}</Text>
+          <Text grey40 text70>{`${weatherDescription}`}</Text>
         </View>
       ) : (
         <View style={{ marginVertical: "12%", paddingVertical: "40%" }}>
