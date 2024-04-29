@@ -4,10 +4,10 @@ import { WeatherDataContext } from "@app/services/contexts/WeatherDataContext";
 import { useWeatherMappedData } from "@app/hooks/useWeatherDetailsMap";
 
 const WeatherDetails = () => {
-  const { weatherData, isWeatherDataLoading, isWeatherError } =
+  const { weatherData, unit, isWeatherDataLoading, isWeatherError } =
     useContext(WeatherDataContext);
 
-  const { weatherAttributes } = useWeatherMappedData(weatherData?.main);
+  const { weatherAttributes } = useWeatherMappedData(weatherData?.main, unit);
 
   return (
     <View>
