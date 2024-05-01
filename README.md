@@ -23,7 +23,7 @@ cd Weather-App
 npm install
 ```
 3. **Environment Configuration:**
-- Obtain an API key from your weather data provider and ensure it is included in your project settings or .env file.
+- Obtain an API key from your weather data provider - https://openweathermap.org and ensure it is included in your project settings or .env file.
 ### Compile and Hot-Reload for Development
 
 4. **Start the development server:**
